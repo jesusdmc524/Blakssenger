@@ -1,0 +1,7 @@
+{
+  "name": "Blackssenger",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

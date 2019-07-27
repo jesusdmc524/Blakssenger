@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <ion-row>
+
+    </ion-row>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Inicio</ion-title>
+
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid *ngIf="users">
+    <ion-row>
+      <ion-col col-3>
+        <!--<img src="https://static.platzi.com/media/tmp/class-files/git/msn_mobile_platzi_pre/msn_mobile_platzi_pre-17_StyleConversationPage/src/assets/img/generic_avatar.png" alt="">-->
+        <img src="../../assets/imgs/offline.png" alt="" (click)="GotoProfile()">
+      </ion-col>
+      <ion-col col-8>
+        <ion-list no-lines>
+          <ion-item>
+            <h3>{{users.nombre}}</h3>
+            <p>{{users.description}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col col-1>
+        <ion-icon name="radio-button-on" [ngClass]="getstatusclass(users.status)"></ion-icon>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+
+
+  <ion-searchbar placeholder="Buscar amigo" [(ngModel)]="query"></ion-searchbar>
+  <ion-list>
+    <p text-center style="color:gray" *ngIf="!friends">Aún no tienes amigos</p>
+    <div *ngIf="users && users.friends">
+    <ion-item-divider color="dark" >Amigos({{users.friends.length}})</ion-item-divider>
+    <!--<div *ngFor="let user of users.friends | search:query">-->
+    <div *ngFor="let user of users.friends">
+
+        <ion-item  (click)="GoToChat(user)">
+          <h2 text-capitalize>
+            <ion-icon name="person" [ngClass]="getstatusclass(user.status)"></ion-icon>
+            {{user}}
+          </h2>
+          
+        </ion-item>
+    </div>
+  </div>
+  </ion-list>
+
+
+  <ion-fab bottom right>
+    <button ion-fab color="secondary" (click)="Addfriend()">
+      <ion-icon name="person-add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
