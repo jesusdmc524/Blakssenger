@@ -108,16 +108,16 @@
       </ion-col>
       <ion-col col-8 >
        <h3>Estado</h3>
-       <p *ngIf="User.status == 'Online'">
+       <p *ngIf="User.status == 'En línea'">
           En linea
         </p>
-        <p *ngIf="User.status == 'AppearOffline'">
+        <p *ngIf="User.status == 'Desconectado'">
             Aparecer Desconectado
           </p>
-         <p *ngIf="User.status == 'Away'">
+         <p *ngIf="User.status == 'Ausente'">
            Ausente
          </p>
-         <p *ngIf="User.status == 'Busy'">
+         <p *ngIf="User.status == 'Ocupado'">
             Ocupado
           </p>
        </ion-col>

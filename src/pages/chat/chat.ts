@@ -24,7 +24,7 @@ export class ChatPage {
   message:string
   conversation: any;
   Shake: boolean = false;
-
+  messageObject:any
   constructor(public navCtrl: NavController, public navParams: NavParams, private loginservice:LoginServiceProvider
     ,private UserService : MainServiceProvider, public conversationService:ConversationService, private vibration: Vibration) {
     this.Friend= this.navParams.get('param')
@@ -73,15 +73,16 @@ export class ChatPage {
     GetMessage(){
       this.conversationService.GetMessageById(this.conversationID).valueChanges().subscribe((data)=>{
         this.conversation = data
-        if(this.conversation.length == 0)
+        this.ExecZumbido()
+
+        /*if(this.conversation.type === 'zumbido')
         {
-          return
+          this.ExecZumbido()
         }
         else
         {
-        this.ExecZumbido()
-
-        }
+          return
+        }*/
         
 
       })
@@ -132,7 +133,7 @@ export class ChatPage {
         
         this.conversationService.add(messageObject).then((data)=>{
         
-          this.GetMessage()
+        this.GetMessage()
 
 
         }).catch((error)=>{

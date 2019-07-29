@@ -43,13 +43,15 @@ export class MyApp {
     ];
 
     this.loginservice.getStatus().subscribe((session) => {
-
       if (!session) {
         this.rootPage = LoginPage
         return
       }
+      else if(session === null)
+      {
+        return
+      }
       else {
-        //this.nav.setRoot(HomePage)
         this.rootPage = HomePage
         this.mainservice.getUserByid(session.uid).valueChanges().subscribe((Datauser: iUser) => {
           this.user = Datauser

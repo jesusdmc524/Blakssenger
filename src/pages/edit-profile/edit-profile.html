@@ -31,10 +31,10 @@
         <ion-item class="itemlog" *ngSwitchCase="4" >
             <ion-label stacked>Estado</ion-label>
               <ion-select [(ngModel)]="User.status"  >
-                <ion-option value="Online" >En linea</ion-option>
-                <ion-option value="AppearOffline" >Aparecer desconectado</ion-option>
-                <ion-option value="Busy" >Ocupado</ion-option>
-                <ion-option value="Away" >Ausente</ion-option>
+                <ion-option value="En línea" >En linea</ion-option>
+                <ion-option value="Desconectado" >Aparecer desconectado</ion-option>
+                <ion-option value="Ocupado" >Ocupado</ion-option>
+                <ion-option value="Ausente" >Ausente</ion-option>
               </ion-select>
           </ion-item>
       <button ion-button block margin-top color="secondary" (click)="updateDataUser()" margin-top>Actualizar</button>

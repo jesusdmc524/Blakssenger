@@ -19,7 +19,7 @@
       </ion-col>
       <ion-col col-8>
         <ion-list no-lines>
-          <ion-item>
+          <ion-item class="Border_Radius">
             <h3>{{users.nombre}}</h3>
             <p>{{users.description}}</p>
           </ion-item>
@@ -39,7 +39,8 @@
   <div *ngIf="users && users.friends">
     <ion-item-divider color="dark">Amigos({{users.friends.length}})</ion-item-divider>
     <!--<div *ngFor="let user of users.friends | search:query">-->
-<ion-searchbar placeholder="Buscar amigo" [(ngModel)]="query"></ion-searchbar>
+    <p text-center style="color:gray" *ngIf="users.friends === ''">Aún no tienes amigos</p>
+    <ion-searchbar placeholder="Buscar amigo" [(ngModel)]="query" class="Border_Radius"></ion-searchbar>
     <div *ngFor="let user of users.friends | search:query">
       <friends [uid]="user"></friends>
     </div>

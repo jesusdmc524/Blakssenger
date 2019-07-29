@@ -11,9 +11,9 @@ export interface iUser
     friends:any
 }
 export enum Status {
-    Online = 'Online',
-    Offline = 'Offline',
-    Busy = 'Busy',
-    AppearOffline = 'Appear_Offline',
-    Away = 'Away'
+    Online = 'En línea',
+    Offline = 'Desconectado',
+    Busy = 'Ocupado',
+    AppearOffline = 'Desconectado',
+    Away = 'Ausente'
   }

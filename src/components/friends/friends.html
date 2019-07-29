@@ -1,19 +1,18 @@
 <!-- Generated template for the FriendsComponent component -->
-<ion-list>
-  <p text-center style="color:gray" *ngIf="!Friend | search:query">Aún no tienes amigos</p>
+  <p text-center style="color:gray" *ngIf="!Friend">Aún no tienes amigos</p>
   <div *ngIf="Friend">
     <!-- <div *ngFor="let user of Friend | search:query">-->
-    <ion-item (click)="GoToChat(Friend)">
+    <ion-item (click)="GoToChat(Friend)" class="Border_Radius">
       <ion-grid>
         <ion-row>
 
-          <ion-col col-10>
+          <ion-col col-9>
             <h2 text-capitalize>
               <ion-icon name="person" [ngClass]="getstatusclass(Friend.status)"></ion-icon>
               {{Friend.nombre}}
             </h2>
           </ion-col>
-          <ion-col col-2>
+          <ion-col col-3>
             <small>{{Friend.status}}</small>
           </ion-col>
         </ion-row>
@@ -23,5 +22,3 @@
     </ion-item>
     <!-- </div>-->
   </div>
-
-</ion-list>
