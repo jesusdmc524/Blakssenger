@@ -147,6 +147,7 @@ export class LoginPage {
         age: this.edad,
         email: this.mail,
         active: true,
+        friends: "",
         uid: data.user.uid,
         status: Status.Online,
       };

@@ -43,33 +43,30 @@ export class MyApp {
     ];
 
     this.loginservice.getStatus().subscribe((session) => {
-      this.mainservice.getUserByid(session.uid).valueChanges().subscribe((Datauser:iUser)=>{
-        this.user = Datauser
-        this.GetFriendsRequest(this.user.email)
 
-      }, (error) =>
-      {
-        console.log(error)
-      })
       if (!session) {
         this.rootPage = LoginPage
-        return
-      }
-      if (!session.uid) {
-        this.rootPage = LoginPage
-
         return
       }
       else {
         //this.nav.setRoot(HomePage)
         this.rootPage = HomePage
+        this.mainservice.getUserByid(session.uid).valueChanges().subscribe((Datauser: iUser) => {
+          this.user = Datauser
+          if (this.user != undefined) {
+            this.GetFriendsRequest()
+
+          }
+          else {
+            return
+          }
+
+        }, (error) => {
+            console.log(error)
+          })
       }
-      this.mainservice.getUserByid(session.uid).valueChanges().subscribe((Datauser: iUser) => {
-        this.user = Datauser
-        
-      }, (err) => {
-        console.log(err)
-      })
+
+
     })
 
   }
@@ -105,52 +102,55 @@ export class MyApp {
     })
   }
 
-  GetFriendsRequest(mail)
-  {
-    this.requestService.GetRequestForEmail(mail).valueChanges().subscribe((data)=>{
+  GetFriendsRequest() {
+    this.requestService.GetRequestForEmail(this.user).valueChanges().subscribe((data) => {
       this.requests = data
-      this.requests = this.requests.filter((r)=>{
+      this.requests = this.requests.filter((r) => {
         return r.status !== 'aceptado' && r.status !== 'rechazado'
       })
+
       this.requests.forEach((r) => {
-        if (this.mailsShown.indexOf(r.Sender.email) === -1)
-        {
-          this.mailsShown.push(r.Sender.email);
-          //mostrar aceptar
-          this.ShowMessage(r)
-        }else
+        if (r.Sender != undefined) {
+          if (this.mailsShown.indexOf(r.Sender.email) === -1) {
+            this.mailsShown.push(r.Sender.email);
+            //mostrar aceptar
+            this.ShowMessage(r)
+          } else {
+            return
+          }
+        } else
         {
           return
         }
+
       });
-    }, (error)=>{
+    }, (error) => {
       console.log(error)
     })
   }
 
-  ShowMessage(r)
-  {
+  ShowMessage(r) {
     let alert = this.alertCtrl.create()
     alert.setTitle('Solicitud de amistad')
     alert.setMessage(r.Sender.nombre + ' te ha enviado una solicitud de amistad')
     alert.addButton({
       text: 'Aceptar',
-      handler: data =>{
-        this.requestService.SetRequestStatus(r,'Aceptado').then((data)=>{
-          this.mainservice.addFriend(this.user.uid,this.user.nombre,r.Sender.uid,r.Sender.nombre);
+      handler: data => {
+        this.requestService.SetRequestStatus(r, 'Aceptado').then((data) => {
+          this.mainservice.addFriend(this.user.uid, this.user.nombre, r.Sender.uid, r.Sender.nombre);
           console.log('Solicitud aceptada')
-        }).catch((error)=>{console.log(error)})
+        }).catch((error) => { console.log(error) })
       }
     })
     alert.addButton({
       text: 'Rechazar',
-      handler: data =>{
-        this.requestService.SetRequestStatus(r,'Rechazado').then((data)=>{
+      handler: data => {
+        this.requestService.SetRequestStatus(r, 'Rechazado').then((data) => {
           console.log('Solicitud rechazado')
-        }).catch((error)=>{console.log(error)})
+        }).catch((error) => { console.log(error) })
       }
     })
-  alert.present()
+    alert.present()
 
   }
 }

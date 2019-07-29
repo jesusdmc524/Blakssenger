@@ -64,7 +64,7 @@ export class HomePage {
               timestamp: Date.now(),
               Reciever_email: data.email,
               Sender: this.users,
-              state: 'pendiente'
+              state: 'Pendiente'
             }
             console.log(request)
             this.requestS.CreateRequest(request).then((data)=>
@@ -87,13 +87,10 @@ export class HomePage {
   }
   
 
-  GoToChat(user) {
-    this.navCtrl.push(ChatPage, { param: user })
-  }
+ 
   GotoProfile() {
     this.navCtrl.push(ProfilePage)
   }
-
   getstatusclass(user) {
     let state = ''
 
@@ -118,6 +115,8 @@ export class HomePage {
     return state
 
   }
+
+ 
 }
 
 

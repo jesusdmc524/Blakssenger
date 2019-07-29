@@ -1,4 +1,27 @@
 <!-- Generated template for the FriendsComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-list>
+  <p text-center style="color:gray" *ngIf="!Friend | search:query">Aún no tienes amigos</p>
+  <div *ngIf="Friend">
+    <!-- <div *ngFor="let user of Friend | search:query">-->
+    <ion-item (click)="GoToChat(Friend)">
+      <ion-grid>
+        <ion-row>
+
+          <ion-col col-10>
+            <h2 text-capitalize>
+              <ion-icon name="person" [ngClass]="getstatusclass(Friend.status)"></ion-icon>
+              {{Friend.nombre}}
+            </h2>
+          </ion-col>
+          <ion-col col-2>
+            <small>{{Friend.status}}</small>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <p>{{Friend.email}}</p>
+    </ion-item>
+    <!-- </div>-->
+  </div>
+
+</ion-list>

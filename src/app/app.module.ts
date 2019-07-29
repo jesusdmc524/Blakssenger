@@ -26,6 +26,8 @@ import { ChatPage } from '../pages/chat/chat';
 import { ConversationService } from '../providers/conversation-service/conversation-service';
 import { Vibration } from '@ionic-native/vibration';
 import { RequestService } from '../providers/Request_service/Request-service';
+import { ProfilePageModule } from '../pages/profile/profile.module';
+import { FriendsComponent } from '../components/friends/friends';
 
 
 export const firebaseConfig = {
@@ -46,7 +48,8 @@ export const firebaseConfig = {
     ProfilePage,
     EditProfilePage,
     SearchPipe,
-    ChatPage
+    ChatPage,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule, 
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,7 +68,8 @@ export const firebaseConfig = {
     LoginPage,
     ProfilePage,
     EditProfilePage,
-    ChatPage
+    ChatPage,
+    FriendsComponent
   ],
   providers: [
     StatusBar,

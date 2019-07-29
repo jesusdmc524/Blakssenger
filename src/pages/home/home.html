@@ -36,24 +36,14 @@
 
 
 
-  <ion-searchbar placeholder="Buscar amigo" [(ngModel)]="query"></ion-searchbar>
-  <ion-list>
-    <p text-center style="color:gray" *ngIf="!friends">Aún no tienes amigos</p>
-    <div *ngIf="users && users.friends">
-    <ion-item-divider color="dark" >Amigos({{users.friends.length}})</ion-item-divider>
+  <div *ngIf="users && users.friends">
+    <ion-item-divider color="dark">Amigos({{users.friends.length}})</ion-item-divider>
     <!--<div *ngFor="let user of users.friends | search:query">-->
-    <div *ngFor="let user of users.friends">
-
-        <ion-item  (click)="GoToChat(user)">
-          <h2 text-capitalize>
-            <ion-icon name="person" [ngClass]="getstatusclass(user.status)"></ion-icon>
-            {{user}}
-          </h2>
-          
-        </ion-item>
+<ion-searchbar placeholder="Buscar amigo" [(ngModel)]="query"></ion-searchbar>
+    <div *ngFor="let user of users.friends | search:query">
+      <friends [uid]="user"></friends>
     </div>
   </div>
-  </ion-list>
 
 
   <ion-fab bottom right>

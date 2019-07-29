@@ -20,7 +20,7 @@ export class RequestService {
   }
 
   GetRequestForEmail(request) {
-    const CleanEmail = request.replace('.', ',');
+    const CleanEmail = request.email.replace('.', ',');
     return this.AfDB.list('requests/' + CleanEmail )
 
   }
